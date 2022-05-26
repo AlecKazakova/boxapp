@@ -1,10 +1,17 @@
 [versions]
-kotlin = "1.6.21"
+kotlin = "1.6.10"
 agp = "7.2.1"
+compose = "1.1.1"
 compileSdk = "31"
 minSdk = "24"
+
+[libraries]
+compose-activity = { module = "androidx.activity:activity-compose", version = "1.4.0" }
+compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
+compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "compose" }
 
 [plugins]
 android-library = { id = "com.android.library", version.ref = "agp" }
 android-application = { id = "com.android.application", version.ref = "agp" }
+android-dynamic-feature = { id = "com.android.dynamic-feature", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

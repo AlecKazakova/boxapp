@@ -1,9 +1,12 @@
 plugins {
   alias(libs.plugins.android.application)
+  alias(libs.plugins.kotlin.android)
 }
 
 android {
   namespace "app.cash.boxapp"
+
+  dynamicFeatures = [":bigboxfeature"]
 
   compileSdk libs.versions.compileSdk.get() as int
 
@@ -16,4 +19,22 @@ android {
     versionCode 1
     versionName "1.0"
   }
+
+  buildFeatures {
+    compose true
+  }
+
+  kotlinOptions {
+    jvmTarget = "1.8"
+    freeCompilerArgs += '-Xexplicit-api=strict'
+  }
+
+  composeOptions {
+    kotlinCompilerExtensionVersion libs.versions.compose.get()
+  }
+}
+
+dependencies {
+  implementation libs.compose.activity
+  implementation libs.compose.material
 }

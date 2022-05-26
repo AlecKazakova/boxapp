@@ -1,0 +1,19 @@
+plugins {
+  alias(libs.plugins.android.application)
+}
+
+android {
+  namespace "app.cash.boxapp"
+
+  compileSdk libs.versions.compileSdk.get() as int
+
+  defaultConfig {
+    minSdk libs.versions.minSdk.get() as int
+    targetSdk libs.versions.compileSdk.get() as int
+
+    applicationId 'app.cash.boxapp'
+
+    versionCode 1
+    versionName "1.0"
+  }
+}

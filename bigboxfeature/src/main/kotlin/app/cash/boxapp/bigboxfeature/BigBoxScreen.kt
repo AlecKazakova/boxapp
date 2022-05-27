@@ -6,25 +6,25 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import app.cash.boxapp.api.ServiceRegistry
 import app.cash.boxapp.bigboxfeature.api.BigBoxMainScreen
 
-@Composable fun BigBoxScreen() {
-  val widgets: MutableList<@Composable () -> Unit> = remember {
-    mutableStateListOf<@Composable () -> Unit>()
+private object BigBoxScreenWidgets : BigBoxMainScreen {
+  val widgets = mutableListOf<@Composable () -> Unit>()
+
+  init {
+    ServiceRegistry.of<BigBoxMainScreen>().install(this)
   }
 
-  ServiceRegistry.of<BigBoxMainScreen>().install(object : BigBoxMainScreen {
-    override fun registerWidget(widget: @Composable () -> Unit) {
-      widgets.add(widget)
-    }
-  })
+  override fun registerWidget(widget: @Composable () -> Unit) {
+    widgets.add(widget)
+  }
+}
 
+@Composable fun BigBoxScreen() {
   Column(
     modifier = Modifier
       .fillMaxSize()
@@ -35,7 +35,7 @@ import app.cash.boxapp.bigboxfeature.api.BigBoxMainScreen
     Text(text = "Big Box Main Screen!")
     Spacer(modifier = Modifier.weight(1f))
 
-    widgets.forEach {
+    BigBoxScreenWidgets.widgets.forEach {
       it()
       Spacer(modifier = Modifier.weight(1f))
     }

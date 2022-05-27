@@ -22,6 +22,7 @@ android {
 }
 
 dependencies {
+  implementation projects.bigboxfeature.api
   implementation projects.app
   implementation libs.compose.material
 }

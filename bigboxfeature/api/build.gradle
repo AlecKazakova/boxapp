@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-  namespace "app.cash.boxapp.bigboxfeature"
+  namespace "app.cash.boxapp.bigboxfeature.api"
 
   compileSdk libs.versions.compileSdk.get() as int
 
@@ -23,6 +23,6 @@ android {
 
 dependencies {
   implementation projects.app
-  implementation projects.bigboxfeature.api
-  implementation libs.compose.material
+
+  implementation libs.compose.runtime
 }

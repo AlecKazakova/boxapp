@@ -11,6 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import app.cash.boxapp.api.BoxAppFeature
+import app.cash.boxapp.api.ServiceRegistry
+import app.cash.boxapp.bigboxfeature.api.BigBoxMainScreen
 
 class SmallBoxFeature : BoxAppFeature {
   @Composable override fun Tile() {
@@ -22,6 +24,10 @@ class SmallBoxFeature : BoxAppFeature {
       contentAlignment = Alignment.CenterStart
     ) {
       Text("Small Box Feature!")
+    }
+
+    ServiceRegistry.of<BigBoxMainScreen>().whenInstalled { bigBoxMainScreen ->
+      bigBoxMainScreen.registerWidget { SmallBoxWidget() }
     }
   }
 }

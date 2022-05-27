@@ -1,3 +1,4 @@
 <resources>
   <string name="bigboxfeature_title">Big Box Feature</string>
+  <string name="smallboxfeature_title">Small Box Feature</string>
 </resources>

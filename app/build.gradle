@@ -6,7 +6,7 @@ plugins {
 android {
   namespace "app.cash.boxapp"
 
-  dynamicFeatures = [":bigboxfeature"]
+  dynamicFeatures = [":bigboxfeature", ":smallboxfeature"]
 
   compileSdk libs.versions.compileSdk.get() as int
 

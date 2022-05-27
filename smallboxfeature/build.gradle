@@ -1,0 +1,27 @@
+plugins {
+  alias(libs.plugins.android.dynamic.feature)
+  alias(libs.plugins.kotlin.android)
+}
+
+android {
+  namespace "app.cash.boxapp.smallboxfeature"
+
+  compileSdk libs.versions.compileSdk.get() as int
+
+  buildFeatures {
+    compose true
+  }
+
+  kotlinOptions {
+    jvmTarget = "1.8"
+  }
+
+  composeOptions {
+    kotlinCompilerExtensionVersion libs.versions.compose.get()
+  }
+}
+
+dependencies {
+  implementation projects.app
+  implementation libs.compose.material
+}

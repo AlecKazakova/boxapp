@@ -1,6 +1,8 @@
 plugins {
   alias(libs.plugins.android.dynamic.feature)
   alias(libs.plugins.kotlin.android)
+  alias(libs.plugins.ksp)
+  alias(libs.plugins.better.dynamic.features)
 }
 
 android {
@@ -8,12 +10,18 @@ android {
 
   compileSdk libs.versions.compileSdk.get() as int
 
+  defaultConfig {
+    minSdk libs.versions.minSdk.get() as int
+    targetSdk libs.versions.compileSdk.get() as int
+  }
+
   buildFeatures {
     compose true
   }
 
-  kotlinOptions {
-    jvmTarget = "1.8"
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
   }
 
   composeOptions {

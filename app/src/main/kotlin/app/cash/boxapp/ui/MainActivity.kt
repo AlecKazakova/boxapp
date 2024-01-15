@@ -8,6 +8,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import app.cash.better.dynamic.features.ExperimentalDynamicFeaturesApi
 import app.cash.boxapp.api.Navigator
 import java.util.Stack
 

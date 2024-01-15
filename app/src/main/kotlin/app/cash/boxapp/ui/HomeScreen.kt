@@ -11,15 +11,27 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import app.cash.better.dynamic.features.ExperimentalDynamicFeaturesApi
+import app.cash.better.dynamic.features.dynamicImplementations
 import app.cash.boxapp.api.BoxAppFeature
-import java.util.ServiceLoader
+import app.cash.boxapp.install.rememberSplitInstallHelper
 
+@OptIn(ExperimentalDynamicFeaturesApi::class)
 @Composable internal fun HomeScreen() {
+  val installHelper = rememberSplitInstallHelper()
+  
+  val features by remember {
+    installHelper.splitInstallManager.dynamicImplementations<BoxAppFeature>()
+  }.collectAsState(initial = emptyList())
+
   Column(
     modifier = Modifier
       .padding(10.dp)
@@ -31,7 +43,7 @@ import java.util.ServiceLoader
         modifier = Modifier.padding(10.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp)
       ) {
-        ServiceLoader.load(BoxAppFeature::class.java).forEach {
+        features.forEach {
           it.Tile()
         }
       }

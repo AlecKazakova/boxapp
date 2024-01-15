@@ -2,7 +2,7 @@
     xmlns:dist="http://schemas.android.com/apk/distribution">
 
   <dist:module
-      dist:instant="false"
+      dist:instant="true"
       dist:title="@string/bigboxfeature_title">
     <dist:delivery>
       <dist:install-time />
